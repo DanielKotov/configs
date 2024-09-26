@@ -18,6 +18,7 @@ set showmatch
 
 set cursorcolumn
 set colorcolumn=120
+set termguicolors
 
 set incsearch
 set autoread
@@ -52,13 +53,14 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'majutsushi/tagbar'
 Plug 'anyakichi/vim-surround'
 Plug 'joom/vim-commentary'
-Plug 'dikiaap/minimalist'
 Plug 'iden3/vim-circom-syntax'
 Plug 'rust-lang/rust.vim'
+Plug 'theoremoon/cryptohack-color.vim'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end() "Перестать это делать
 
-colorscheme minimalist
-let g:airline_theme='minimalist'
+colorscheme cryptohack
+let g:airline_theme="minimalist"
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
@@ -98,4 +100,3 @@ nnoremap <leader>v :vsplit<Space>
 
 nnoremap <leader>w :w
 nnoremap <leader>q :wq
-
