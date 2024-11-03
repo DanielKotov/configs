@@ -5,37 +5,44 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Created by newuser for 5.9#
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 export ZSH=$HOME/.zsh
 export PATH=$PATH:/snap/bin
-
 export HISTSIZE=10000
+HISTFILE=~/.zsh_history
+HISTDUP=erase
 export SAVEHIST=10000
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_FIND_NO_DUPS
+setopt hist_ignore_all_dups
+setopt hist_find_no_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+
+setopt appendhistory
+setopt sharehistory
+setopt incappendhistory
+
+autoload -U compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 
+# git setup
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+RPROMPT=\$vcs_info_msg_0_
+# PROMPT=\$vcs_info_msg_0_'%# '
+zstyle ':vcs_info:git:*' formats '%b'
 
-source "$HOME/.zsh/themes/spaceship-prompt/spaceship.zsh"
+
 source "$ZSH/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$ZSH/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 source "$ZSH/zsh-extract/extract.plugin.zsh"
+source "$ZSH/zsh-z/zsh-z.plugin.zsh"
+source "$ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$ZSH/plugins/zsh-you-should-use/you-should-use.plugin.zsh"
+source "$HOME/powerlevel10k/powerlevel10k.zsh-theme"
 fpath=($ZSH/zsh-completions/src $fpath)
-
-
-SPACESHIP_PROMT_ORDER=(
-    time
-    user
-    host
-    dir
-    git
-    docker
-    exec_time
-    vi_mode
-    jobs
-    exit_code
-    char
-)
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
