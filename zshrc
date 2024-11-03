@@ -7,6 +7,12 @@ fi
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
+alias ll="ls -la"
+alias copy="xclip -sel clip"
+
+alias -s py=vim
+alias -s sage=vim
+
 export ZSH=$HOME/.zsh
 export PATH=$PATH:/snap/bin
 export HISTSIZE=10000
@@ -22,10 +28,6 @@ setopt appendhistory
 setopt sharehistory
 setopt incappendhistory
 
-autoload -U compinit && compinit
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-
-
 # git setup
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
@@ -36,13 +38,17 @@ RPROMPT=\$vcs_info_msg_0_
 zstyle ':vcs_info:git:*' formats '%b'
 
 
-source "$ZSH/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$ZSH/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
-source "$ZSH/zsh-extract/extract.plugin.zsh"
-source "$ZSH/zsh-z/zsh-z.plugin.zsh"
-source "$ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$ZSH/plugins/zsh-extract/extract.plugin.zsh"
+source "$ZSH/plugins/zsh-z/zsh-z.plugin.zsh"
+source "$ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$ZSH/plugins/zsh-you-should-use/you-should-use.plugin.zsh"
 source "$HOME/powerlevel10k/powerlevel10k.zsh-theme"
+source "$ZSH/plugins/websearch/web-search.plugin.zsh"
 fpath=($ZSH/zsh-completions/src $fpath)
+# zsh-z plugin options
+ZSH_CASE=smart # lower case patterns are treated as case insensitive
+zstyle ':completion:*' menu select # improve completion menu style
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
