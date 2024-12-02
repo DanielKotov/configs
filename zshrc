@@ -9,9 +9,11 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 alias ll="ls -la"
 alias copy="xclip -sel clip"
-
+alias zzz="systemctl suspend"
+alias tg="telegram-desktop"
 alias -s py=vim
 alias -s sage=vim
+alias wshark="sudo wireshark"
 
 export ZSH=$HOME/.zsh
 export PATH=$PATH:/snap/bin
